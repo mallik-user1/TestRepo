@@ -1,13 +1,16 @@
 data "aws_availability_zones" "available" {}
 
 # Create a VPC to launch our instances into
+#b newc 
 resource "aws_vpc" "km_vpc" {
   #zs:skip=AC_AWS_0369 ignore this policy
+  
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = merge(var.default_tags, {
+    #ZS:SKIP = AC_AWS_0369 ignore this policy
     Name = "km_vpc_${var.environment}"
   })
 }
@@ -101,6 +104,9 @@ resource "aws_route_table_association" "km_private_route_table_association" {
 # ALB Security group
 # This is the group you need to edit if you want to restrict access to your application
 resource "aws_security_group" "km_alb_sg" {
+  #zs:skip=AC_AWS_0229 new sg skip
+  #ZS:SKIP=AC_AWS_0228 new skp
+  #zs:skip=AC_AWS_0228 skip it
   name        = "km_alb_sg_${var.environment}"
   description = "controls access to the ALB"
   vpc_id      = aws_vpc.km_vpc.id
@@ -161,6 +167,7 @@ resource "aws_lb" "km_lb" {
 }
 
 resource "aws_lb_target_group" "km_lb_target" {
+  #zs:skip=AC_AWS_0492 ignore
   name        = "km-lb-target-group-${var.environment}"
   port        = 80
   protocol    = "HTTP"
@@ -171,6 +178,7 @@ resource "aws_lb_target_group" "km_lb_target" {
 
 # Redirect all traffic from the ALB to the target group
 resource "aws_lb_listener" "km_frontend_listener" {
+  #zs:skip=AC_AWS_0491 new
   load_balancer_arn = aws_lb.km_lb.arn
   port              = "80"
   protocol          = "HTTP"

@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+# new user
 provider "aws" {
   region = var.region
 }
