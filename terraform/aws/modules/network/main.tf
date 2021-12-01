@@ -3,6 +3,7 @@ data "aws_availability_zones" "available" {}
 # Create a VPC to launch our instances into
 #b newc 
 resource "aws_vpc" "km_vpc" {
+  #ZS:SKIP=AC_AWS_0369
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
