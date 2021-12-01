@@ -106,6 +106,7 @@ resource "aws_route_table_association" "km_private_route_table_association" {
 resource "aws_security_group" "km_alb_sg" {
   #zs:skip=AC_AWS_0229 new sg skip
   #ZS:SKIP=AC_AWS_0228 new skp
+  #zs:skip=AC_AWS_0228 skip it
   name        = "km_alb_sg_${var.environment}"
   description = "controls access to the ALB"
   vpc_id      = aws_vpc.km_vpc.id
