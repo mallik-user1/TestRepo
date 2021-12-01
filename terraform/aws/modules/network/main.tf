@@ -166,7 +166,7 @@ resource "aws_lb" "km_lb" {
 }
 
 resource "aws_lb_target_group" "km_lb_target" {
-  #ZS:SKIP=AC_AWS_0492 ignore
+  #zs:skip=AC_AWS_0492 ignore
   name        = "km-lb-target-group-${var.environment}"
   port        = 80
   protocol    = "HTTP"
